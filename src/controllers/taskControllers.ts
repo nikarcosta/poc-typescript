@@ -18,6 +18,24 @@ async function getTasks(req: Request, res: Response) {
     
 }
 
+async function addNewTask(req: Request, res: Response, next: NextFunction) {
+
+    const { description } = req.body;
+
+    try {
+
+        await taskServices.addNewTask({description});
+
+        return res.sendStatus(201);
+
+    } catch(err) {
+
+        next(next);
+
+    }
+}
+
 export default {
-    getTasks
+    getTasks,
+    addNewTask
 }

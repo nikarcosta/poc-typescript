@@ -7,6 +7,16 @@ async function getTasks() {
     `);
 }
 
+
+async function addNewTask({description}) {
+
+    return await connectionDb.query(`
+        INSERT INTO tasks (description)
+        VALUES ($1)
+    `,[description]);
+}
+
 export default {
-    getTasks
+    getTasks,
+    addNewTask
 }

@@ -10,6 +10,14 @@ async function getTasks() {
     return rows;
 }
 
+async function addNewTask({description}) {
+
+    await taskRepositories.addNewTask({description});
+
+    
+}
+
 export default {
-    getTasks
+    getTasks,
+    addNewTask
 }

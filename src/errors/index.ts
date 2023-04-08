@@ -1,5 +1,3 @@
-import { ApplicationError } from "../protocols/protocols";
-
 function notFoundError() {
     
     return {
@@ -10,28 +8,16 @@ function notFoundError() {
 }
 
 
-function conflictError(message: string) {
+function badRequest(message: string | string[]) {
     return {
-      name: "ConflictError",
+      name: "BadRequest",
       message,
     };
 }
 
-function invalidDataError(details: string[]): ApplicationInvalidateDataError {
-    return {
-        name: "InvalidDataError",
-        message: "Invalid data",
-        details
-    }
-}
-
-type ApplicationInvalidateDataError = ApplicationError & {
-    details: string[];
-}
   
 export default {
     notFoundError,
-    conflictError,
-    invalidDataError
+    badRequest
 };
   

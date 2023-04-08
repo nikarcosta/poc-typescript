@@ -1,5 +1,9 @@
-import joi from "joi";
+import joi, { ObjectSchema } from "joi";
 
-export const taskSchema = joi.object({
+interface Task {
+    description: string;
+}
+
+export const taskSchema: ObjectSchema<Task> = joi.object({
     description: joi.string().required()
 });
