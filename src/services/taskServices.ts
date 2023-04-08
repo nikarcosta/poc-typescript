@@ -17,7 +17,19 @@ async function addNewTask({description}) {
     
 }
 
+async function updateTask(description: string, taskId: number) {
+
+   const { rowCount } = await taskRepositories.findTaskById(taskId);
+
+   if(!rowCount) throw errors.notFoundError();
+
+   await taskRepositories.updateTask(description,taskId);
+
+    
+}
+
 export default {
     getTasks,
-    addNewTask
+    addNewTask,
+    updateTask
 }

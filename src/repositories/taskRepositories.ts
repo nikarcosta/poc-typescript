@@ -16,7 +16,29 @@ async function addNewTask({description}) {
     `,[description]);
 }
 
+async function findTaskById(taskId:number){
+
+    return await connectionDb.query(`
+        SELECT * from tasks
+        WHERE id = $1
+    `, [taskId]);
+
+
+}
+
+async function updateTask(description:string, taskId:number): Promise<void>{
+
+    await connectionDb.query(`
+        UPDATE tasks
+        SET description = $1
+        WHERE id = $2
+    `, [description, taskId]);    
+
+}
+
 export default {
     getTasks,
-    addNewTask
+    addNewTask,
+    findTaskById,
+    updateTask
 }

@@ -35,7 +35,27 @@ async function addNewTask(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function updateTask(req: Request, res: Response, next: NextFunction) {
+
+    const  taskId  = Number(req.params.id);
+
+    const { description } = req.body;
+
+    try {
+
+        await taskServices.updateTask(description, taskId);
+        return res.sendStatus(201);
+
+    } catch(err) {
+
+        next(err);
+
+    }
+
+}
+
 export default {
     getTasks,
-    addNewTask
+    addNewTask,
+    updateTask
 }
