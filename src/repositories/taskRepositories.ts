@@ -36,9 +36,20 @@ async function updateTask(description:string, taskId:number): Promise<void>{
 
 }
 
+
+async function deleteTask(taskId:number): Promise<void>{
+
+    await connectionDb.query(`
+        DELETE FROM tasks
+        WHERE id = $1
+    `, [taskId]);    
+
+}
+
 export default {
     getTasks,
     addNewTask,
     findTaskById,
-    updateTask
+    updateTask,
+    deleteTask
 }

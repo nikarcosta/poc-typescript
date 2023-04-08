@@ -28,8 +28,19 @@ async function updateTask(description: string, taskId: number) {
     
 }
 
+async function deleteTask(taskId: number) {
+
+    const { rowCount } = await taskRepositories.findTaskById(taskId);
+
+    if(!rowCount) throw errors.notFoundError();
+
+    await taskRepositories.deleteTask(taskId);
+
+}
+
 export default {
     getTasks,
     addNewTask,
-    updateTask
+    updateTask,
+    deleteTask
 }

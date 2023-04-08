@@ -44,7 +44,7 @@ async function updateTask(req: Request, res: Response, next: NextFunction) {
     try {
 
         await taskServices.updateTask(description, taskId);
-        return res.sendStatus(201);
+        return res.status(201).send("Task updated sucessfully!");
 
     } catch(err) {
 
@@ -54,8 +54,25 @@ async function updateTask(req: Request, res: Response, next: NextFunction) {
 
 }
 
+async function deleteTask(req: Request, res: Response, next: NextFunction){
+
+    const taskId = Number(req.params.id);
+
+    try {
+
+        await taskServices.deleteTask(taskId);
+        return res.status(201).send("Task deleted successfully!");
+
+    } catch(err) {
+
+        next(err);
+
+    }
+}
+
 export default {
     getTasks,
     addNewTask,
-    updateTask
+    updateTask,
+    deleteTask
 }
